@@ -112,6 +112,7 @@ main {
     align-items: center;
     gap: 20px;
     height: 80vh;
+    padding-bottom: 20%;
 }
 
 .cadastro-container {
@@ -141,17 +142,44 @@ form input:focus {
     border: 1px solid #f39c12;
 }
 
-button {
-    width: 50%;
+.opcao {
+    width: 150px;
     padding: 10px;
     background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
     color: white;
     border: none;
     border-radius: 20px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.titulo{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.linha {
+    border: none;
+    width: 300px;
+    height: 2px;
+    background-color: #f39c12;
+}
+.titulo-text{
+    align-self: center;
+}
+.linguagem{
+    width:25%;
+    align-items: center;
+}
+.list {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 20px 10px;
 }
 
 button:hover {

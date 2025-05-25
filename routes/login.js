@@ -12,19 +12,30 @@ router.get('/', function (req, res) {
   req.session.sucesso = null;
 });
 
-
 router.post('/', async function (req, res) {
   const { email, senha } = req.body;
   const usuario = await global.banco.buscarUsuario({ email, senha });
 
   if (usuario && usuario.id_usuario) {
-    req.session.id_usuario = usuario.id_usuario;
-    req.session.email = usuario.email;
+    req.session.usuario = {
+      id: usuario.id_usuario,
+      nome: usuario.nome,
+      email: usuario.email,
+      foto_perfil: usuario.foto_perfil,
+      titulo: usuario.titulo,
+      bits: usuario.bits,
+      desafios_resolvidos: usuario.desafios_resolvidos
+    };
     res.redirect('/inicio');
   } else {
     req.session.erro = "Login inválido!";
     res.redirect('/login');
   }
+});
+
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
 });
 
 module.exports = router;

@@ -1,22 +1,21 @@
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 
+const pool = mysql.createPool({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'CodeLabDb',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
 async function conectarBD() {
-    if (global.conexao && global.conexao.state !== 'disconnected') {
-        return global.conexao;
-    }
-
-    const conexao = await mysql.createConnection({
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        password: '',
-        database: 'CodeLabDb'
-    });
-
-    global.conexao = conexao;
-    return conexao;
+    return pool;
 }
+
 
 async function buscarUsuario({ email, senha }) {
     const conexao = await conectarBD();
@@ -55,8 +54,71 @@ async function criarUsuario({ nome, email, senha }) {
     await conexao.query(sql, [nome, email, hash]);
 }
 
+async function listarLinguagens() {
+    const conexao = await conectarBD();
+
+    const sql = "SELECT * FROM Linguagem";
+    const [linguagens] = await conexao.query(sql);
+
+    return linguagens;
+}
+
+async function listarDesafiosPorLinguagem(nomeLinguagem, { busca, estrelas } = {}) {
+    const conexao = await conectarBD();
+
+    let sql = `
+        SELECT 
+            d.id_desafio AS id, 
+            d.titulo, 
+            d.descricao,
+            d.estrelas, 
+            d.bits 
+        FROM Desafio d
+        JOIN Linguagem l ON d.id_linguagem = l.id_linguagem
+        WHERE l.nome = ?
+    `;
+
+    const params = [nomeLinguagem];
+
+    if (busca) {
+        sql += ' AND d.titulo LIKE ?';
+        params.push(`%${busca}%`);
+    }
+
+    if (estrelas) {
+        sql += ' AND d.estrelas = ?';
+        params.push(estrelas);
+    }
+
+    const [desafios] = await conexao.query(sql, params);
+
+    return desafios;
+}
+
+async function obterRankingUsuarios(limit = 10) {
+    const conexao = await conectarBD();
+
+    const sql = `
+        SELECT 
+            id_usuario,
+            nome,
+            titulo,
+            bits,
+            foto_perfil
+        FROM Usuario
+        ORDER BY bits DESC
+        LIMIT ?
+    `;
+
+    const [usuarios] = await conexao.query(sql, [limit]);
+    return usuarios;
+}
+
 module.exports = {
     buscarUsuario,
     buscarUsuarioPorEmail,
-    criarUsuario
+    criarUsuario,
+    listarLinguagens,
+    listarDesafiosPorLinguagem,
+    obterRankingUsuarios 
 };
