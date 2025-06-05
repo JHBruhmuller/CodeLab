@@ -1,0 +1,472 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Contrail One', sans-serif;
+}
+
+
+body {
+    background-color: #f4f4f4;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+}
+
+
+header {
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-right: 20px;
+    height: 60px;
+    width: 100vw;
+    margin-bottom: 5%;
+}
+
+
+/*NAVBAR INÍCIO*/
+.logo {
+    width: 120px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+
+.aba {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.aba2 {
+    color: #102540;
+    text-decoration: none;
+}
+
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding-left: 2%;
+}
+
+
+.nav-opt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.imagem-logo {
+    width: 120px;
+    display: flex;
+    align-items: center;
+}
+
+
+.image-inicio {
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+
+.image-livro {
+    width: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+.image-medalha {
+    width: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+.image-pessoa {
+    width: 24px;
+    display: flex;
+    align-items: center;
+}
+
+
+.cadastro-text {
+    margin-bottom: 20px;
+}
+
+
+.nome {
+    color: #f39c12;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    text-decoration: none;
+    justify-content: start;
+    align-items: center;
+    width: 76%;
+    gap: 50px;
+}
+/*  FIM*/
+
+
+main {
+    color: #102540;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 80vh;
+    flex: 1;
+    padding-top: 0px;
+    padding-bottom: 100px;
+}
+
+
+.cadastro-container {
+    background: #cecece;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    justify-content: flex-start;
+    width: 350px;
+}
+
+
+/* LINHAS E NOME DA CATEGORIA INÍCIO*/
+.linha{
+  border: none;
+  height: 4px;
+  background-color: #FFD10C;
+  width: 7  0%;
+  margin-right: 160px;
+  position: relative;
+  top: -55px;
+  right: 0%;
+  border-radius: 5px;
+  z-index: -1
+}
+
+
+
+
+.imagem-logo-java {
+    width: 50px;
+    padding-bottom: 10px;
+}
+
+
+.nome-categoria {
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: fit-content;
+    max-width: max-content;
+    height: 65px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 38px;
+    color: white;
+    position: relative;
+    top: -20px;
+    left: -450px;
+}
+
+
+.checkbox-group {
+  position: relative;
+  height: 33px;
+  top: -66px;     /* move para cima */
+  left: 350px;     /* move para a direita */
+  margin-top: -60px;
+  margin-bottom: 20px;
+  display: inline-flex;
+  gap: 10px;
+  background-color: #2A60A6;
+  color: white;
+  border-radius: 32px;
+  padding: 10px 20px;
+}
+
+
+
+
+
+
+/* Label que envolve o checkbox + texto */
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+  user-select: none;
+  position: relative;
+  padding-left: 35px;
+}
+
+
+/* Esconde o checkbox nativo */
+.custom-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+
+/* Caixinha custom */
+.checkmark {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border: 2px solid #2A60A6;
+  border-radius: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+
+/* Marca de check (✓) - oculto inicialmente */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+
+/* Quando checkbox está checado */
+.custom-checkbox input[type="checkbox"]:checked ~ .checkmark {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+
+/* Mostrar ✓ quando checked */
+.custom-checkbox input[type="checkbox"]:checked ~ .checkmark::after {
+  display: block;
+}
+
+
+
+
+/*BARRAS DE PRÉVIA DOS DESAFIOS INÍCIO*/
+
+
+.linguagem-container {
+  background-color: none;
+}
+
+
+
+
+
+
+.barra-desafios {
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+    margin-bottom: 10px;
+    padding: 25px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 38px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    top: -40px;
+    width: 1000px;
+    height: 75px;
+}
+
+
+.botao-iniciar {
+    background-color: none;
+    width: 50%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: absolute;
+    right: -150px;
+    top: 50%;
+    transform: translateY(-75%);
+}
+
+
+.pontos-desafio {
+    color: white;
+    font-size: 24px;
+    background-color: #2A60A6;
+    width: 90px;
+    border-radius: 15px;
+    position: absolute;
+    left: 40%;
+}
+
+
+.estrela-desafio {
+    background-color: #2A60A6;
+    width: 140px;
+    height: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    margin-top: 2px;
+   
+}
+
+
+.barra-desafios-concluidos {
+    background: linear-gradient(45deg,#0f9916 25%, #36d43d 100%);
+    margin-bottom: 10px;
+    padding: 25px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 38px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    top: -40px;
+    width: 1000px;
+    height: 75px;
+}
+
+
+.pontos-desafio-concluido {
+    color: white;
+    font-size: 24px;
+    background-color: #38f341;
+    width: 90px;
+    border-radius: 15px;
+    position: absolute;
+    left: 40%;
+}
+
+
+.estrela-desafio-concluido {
+    background-color: #38f341;
+    width: 140px;
+    height: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    margin-top: 2px;
+   
+}
+/*FIM*/
+
+
+form input {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+}
+
+
+form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #f39c12;
+    border: 1px solid #f39c12;
+}
+
+
+button {
+    width: 50%;
+    padding: 10px;
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+button:hover {
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+}
+
+
+footer {
+    background: linear-gradient(45deg, #2A60A6 25%, #102540 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 50px;
+    width: 100%;
+    bottom: 0;
+    align-items: center;
+}
+
+
+.texto-footer {
+    color: white;
+    font-family: 'Content', sans-serif;
+    font-size: 12px;
+}

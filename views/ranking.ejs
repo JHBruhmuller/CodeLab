@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking | CodeLab</title>
+    <link rel="stylesheet" href="/stylesheets/ranking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Content&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav">
+                <a class="aba" href="/inicio">
+                    <img src="/images/logo-branca.png" class="logo">
+                </a>
+                <div class="nav-opt">
+                <a class="aba" href="/inicio">
+                    <img src="/images/inicio-logo.png" class="image-inicio">
+                </a>
+                <a class="aba" href="/inicio">Início</a>
+                </div>
+                <div class="nav-opt">
+                <a class="aba" href="/aprendizado">
+                    <img src="/images/livro-logo.png" class="image-livro">
+                </a>
+                <a class="aba" href="/aprendizado">Meu Aprendizado</a>
+                </div>
+                <div class="nav-opt">
+                    <a class="aba" href="/ranking">
+                    <img src="/images/medalha-logo.png" class="image-medalha">
+                </a>
+                    <a class="aba" href="/ranking">Ranking</a>
+                </div>
+                
+            </div>
+            <div class="nav-opt">
+                <a class="aba" href="/login">Login</a>
+                <a class="aba" href="/login">
+                    <img src="/images/pessoa-logo.png" class="image-pessoa">
+                </a>
+            </div>
+        </nav>
+    </header>
+        <main class="container">
+            <section class="ranking-section">
+                <hr class="linha">
+                <h2 class="titulo-ranking">
+                    🏆 <span>RANKING</span> 🏆
+                </h2>
+                <hr class="linha">
+
+                <div class="ranking-lista">
+                    <% ranking.forEach((usuario, index) => { %>
+                        <div class="ranking-item">
+                            <img src="<%= usuario.foto_perfil || '/images/pessoa-logo.png' %>" 
+                                class="foto-perfil" 
+                                alt="Foto de perfil de <%= usuario.nome %>">
+                            
+                            <div class="info-usuario">
+                                <h3 class="nome-usuario">
+                                    <%= usuario.nome %> 
+                                    <small>- <%= usuario.titulo || 'Sem Título' %></small>
+                                </h3>
+                            </div>
+
+                            <div class="posicao">
+                                <strong><%= index + 1 %></strong><sup>º</sup>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <div class="ver-mais">
+                    <a href="#">Ver mais <span aria-hidden="true">▼</span></a>
+                </div>
+            </section>
+        </main>
+    <footer>
+        <p class="texto-footer">Copyright &copy; CodeLab Inc. Todos os direitos reservados. CodeLab Ltda. CNPJ: 00.000.000/0000-00</p>
+        <p class="texto-footer">Brasil</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+.desafio-container {
+    background: #cecece;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.cabecalho-desafio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bits {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.codigo-box, .saida-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.discussao {
+    margin-top: 40px;
+}
+
+.discussao form input {
+    width: calc(100% - 120px);
+    display: inline-block;
+}
+
+.discussao form button {
+    width: 100px;
+    display: inline-block;
+}

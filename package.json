@@ -1,0 +1,29 @@
+{
+  "name": "codelab",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "codelab": "file:",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.18.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.5.0",
+    "nyc": "^17.1.0",
+    "sinon": "^20.0.0",
+    "supertest": "^7.1.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "coverage": "nyc --reporter=html --reporter=text mocha",
+    "start": "node ./bin/www"
+  }
+}

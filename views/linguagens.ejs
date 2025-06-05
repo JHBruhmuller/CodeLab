@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios - <%= linguagem %> | CodeLab</title>
+    <link rel="stylesheet" href="/stylesheets/linguagens.css">
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Content&display=swap" rel="stylesheet">
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filtroEstrelas = document.getElementById("filtro-estrelas");
+        const formFiltros = document.getElementById("form-filtros");
+
+        if (filtroEstrelas && formFiltros) {
+            filtroEstrelas.addEventListener("change", function () {
+                formFiltros.submit();
+            });
+        }
+    });
+</script>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav">
+                <a class="aba" href="/inicio">
+                    <img src="/images/logo-branca.png" class="logo">
+                </a>
+                <div class="nav-opt">
+                <a class="aba" href="/inicio">
+                    <img src="/images/inicio-logo.png" class="image-inicio">
+                </a>
+                <a class="aba" href="/inicio">Início</a>
+                </div>
+                <div class="nav-opt">
+                <a class="aba" href="/aprendizado">
+                    <img src="/images/livro-logo.png" class="image-livro">
+                </a>
+                <a class="aba" href="/aprendizado">Meu Aprendizado</a>
+                </div>
+                <div class="nav-opt">
+                    <a class="aba" href="/ranking">
+                    <img src="/images/medalha-logo.png" class="image-medalha">
+                </a>
+                    <a class="aba" href="/ranking">Ranking</a>
+                </div>
+                
+            </div>
+            <div class="nav-opt">
+                <a class="aba" href="/login">Login</a>
+                <a class="aba" href="/login">
+                    <img src="/images/pessoa-logo.png" class="image-pessoa">
+                </a>
+            </div>
+        </nav>
+    </header>
+  <main class="container">
+        <section class="filtro">
+            <form class="filtro-form" method="get" id="form-filtros">
+                <div class="linguagem-header">
+                    <div class="titulo-ling">
+                        <img src="/images/logos/<%= linguagem.toLowerCase() %>.png" alt="<%= linguagem %>">
+                        <h1><%= linguagem.toUpperCase() %></h1>  
+                    </div>
+                    <hr class="linha">
+                    <input type="text" name="busca" placeholder="Pesquisar..." class="input-busca" value="<%= busca || '' %>">
+                    <hr class="linha">
+                    <select name="estrelas" class="select-estrelas" id="filtro-estrelas">
+                        <option value="">Todas</option>
+                        <option value="1" <%= estrelas == '1' ? 'selected' : '' %>>⭐☆☆☆☆</option>
+                        <option value="2" <%= estrelas == '2' ? 'selected' : '' %>>⭐⭐☆☆☆</option>
+                        <option value="3" <%= estrelas == '3' ? 'selected' : '' %>>⭐⭐⭐☆☆</option>
+                        <option value="4" <%= estrelas == '4' ? 'selected' : '' %>>⭐⭐⭐⭐☆</option>
+                        <option value="5" <%= estrelas == '5' ? 'selected' : '' %>>⭐⭐⭐⭐⭐</option>
+                    </select>
+                </div>
+            </form>
+        </section>
+
+        <section class="desafios-lista">
+            <% if (desafios.length === 0) { %>
+                <p class="sem-desafios">Nenhum desafio disponível.</p>
+            <% } else { %>
+                <% desafios.forEach(d => { %>
+                    <div class="desafio-card">
+                        <h2><%= d.titulo %></h2>
+                        <span class="bits"><%= d.bits %> Bits</span>
+                        <span class="estrelas">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <span class="estrela"><%= i <= d.estrelas ? '⭐' : '☆' %></span>
+                            <% } %>
+                        </span>
+                        <a class="btn-iniciar" href="/desafio/<%= d.id %>">Iniciar</a>
+                    </div>
+                <% }) %>
+            <% } %>
+        </section>
+    </main>
+    <footer>
+        <p class="texto-footer">Copyright &copy; CodeLab Inc. Todos os direitos reservados. CodeLab Ltda. CNPJ: 00.000.000/0000-00</p>
+        <p class="texto-footer">Brasil</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeLab - Meu Aprendizado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Contrail+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/stylesheets/aprendizado.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav">
+                <a class="aba" href="/inicio">
+                    <img src="/images/logo-branca.png" class="logo">
+                </a>
+                <div class="nav-opt">
+                <a class="aba" href="/inicio">
+                    <img src="/images/inicio-logo.png" class="image-inicio">
+                </a>
+                <a class="aba" href="/inicio">Início</a>
+                </div>
+                <div class="nav-opt">
+                <a class="aba" href="/aprendizado">
+                    <img src="/images/livro-logo.png" class="image-livro">
+                </a>
+                <a class="aba" href="/aprendizado">Meu Aprendizado</a>
+                </div>
+                <div class="nav-opt">
+                    <a class="aba" href="/ranking">
+                    <img src="/images/medalha-logo.png" class="image-medalha">
+                </a>
+                    <a class="aba" href="/ranking">Ranking</a>
+                </div>
+                
+            </div>
+            <div class="nav-opt">
+                <% if (usuario) { %>
+                    <span class="aba"><%= usuario.nome %></span>
+                        <img src="<%= usuario.foto_perfil ? usuario.foto_perfil : '/images/pessoa-logo.png' %>" class="image-pessoa">
+                    <a class="aba" href="/login/logout">Sair</a>
+                    <a class="aba" href="/login/logout"></a>
+                <% } else { %>
+                    <a class="aba" href="/login">Login</a>
+                    <a class="aba" href="/login">
+                        <img src="/images/pessoa-logo.png" class="image-pessoa">
+                    </a>
+                <% } %>
+            </div>
+        </nav>
+    </header>
+
+
+  <main>
+    <% if (linguagens && Object.keys(linguagens).length > 0) { %>
+      <% Object.entries(linguagens).forEach(([nome, dados], index) => { %>
+        <div class="linguagem-container">
+          <div class="nome-categoria">
+            <img src="/images/java-logo.png" alt="<%= nome %>" class="imagem-logo-java" />
+            <%= nome %>
+          </div>
+          <hr class="linha" />
+
+
+          <div class="checkbox-group">
+            <label class="custom-checkbox">
+              <input type="checkbox" name="incompletos-<%= index %>" checked />
+              <span class="checkmark"></span>
+              Desafios Incompletos
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" name="completos-<%= index %>" checked />
+              <span class="checkmark"></span>
+              Desafios Completos
+            </label>
+          </div>
+
+
+          <div class="desafios" data-linguagem-index="<%= index %>">
+            <% dados.desafios.forEach(d => { %>
+              <div class="<%= d.concluido ? 'barra-desafios-concluidos completo' : 'barra-desafios incompleto' %>">
+                <p>
+                  <%= d.titulo %>
+                  <span class="<%= d.concluido ? 'pontos-desafio-concluido' : 'pontos-desafio' %>"><%= d.bits %> Bits</span>
+                  <span class="<%= d.concluido ? 'estrela-desafio-concluido' : 'estrela-desafio' %>">
+                    <% for(let i = 0; i < 5; i++) { %>
+                      <%= i < d.estrelas ? '⭐' : '☆' %>
+                    <% } %>
+                  </span>
+                  <span class="botao-iniciar"><%= d.concluido ? 'Continuar' : 'Iniciar' %></span>
+                </p>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p style="text-align: center;">Você ainda não iniciou nenhum desafio.</p>
+    <% } %>
+  </main>
+
+
+  <footer>
+    <span class="texto-footer">© 2025 CodeLab</span>
+    <span class="texto-footer">Todos os direitos reservados</span>
+  </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Para cada grupo de linguagem
+      document.querySelectorAll('.linguagem-container').forEach((container, index) => {
+        const checkboxIncompletos = container.querySelector(`input[name="incompletos-${index}"]`);
+        const checkboxCompletos = container.querySelector(`input[name="completos-${index}"]`);
+        const desafios = container.querySelectorAll('.desafios .barra-desafios, .desafios .barra-desafios-concluidos');
+
+
+        function filtrarDesafios() {
+          desafios.forEach(el => {
+            const ehCompleto = el.classList.contains('completo');
+            const ehIncompleto = el.classList.contains('incompleto');
+
+
+            if ((ehCompleto && checkboxCompletos.checked) || (ehIncompleto && checkboxIncompletos.checked)) {
+              el.style.display = 'flex';
+            } else {
+              el.style.display = 'none';
+            }
+          });
+        }
+
+
+        checkboxIncompletos.addEventListener('change', filtrarDesafios);
+        checkboxCompletos.addEventListener('change', filtrarDesafios);
+        filtrarDesafios(); // aplicar ao carregar
+      });
+    });
+  </script>
+</body>
+</html>
